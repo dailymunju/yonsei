@@ -62,69 +62,75 @@ const interior = () => {
             `2019년에는 중국 청도시립병원과 MOU를 체결을 하며 청도시립병원 내에 연세사랑병원의 관절전문센터를 개소하였습니다. 이처럼 국내뿐 아니라 국외에서도 활동하며, 본원의 3D 인공관절 수술기법과 의료기술 둥을 세계에 널리 알렸습니다.`,
             `강남 교보타워의 멋진 경치와 여유로움이 어우러진 연세사랑병원의 진정한 가치를 느낄 수 있는 공간입니다. 안락한 대기공간과 업무를 보실 수 있는 편리한 시설들이 준비되어 있습니다.`,
         ];
-        const $textLi = getAll('.interior .sub-con .text-box li');
-        const $imgLi = getAll('.interior .sub-con .img-box li');
-        const $imgUl = get('.interior .sub-con .img-box ul');
-        const $p = get('.interior .sub-con .text-box p');
-        const $next = get('.interior .sub-con .img-box .btn.next');
-        const $prev = get('.interior .sub-con .img-box .btn.prev');
-        let posX = [0, -500, -1000, -1500];
-
+        const $textLi = getAll('.interior .slide .text-box li');
+        const $imgLi = getAll('.interior .slide .img-box li');
+        const $imgUl = get('.interior .slide .img-box ul');
+        const $next = get('.interior .slide .img-box .btn.next');
+        const $prev = get('.interior .slide .img-box .btn.prev');
+        const $p = get('.interior .slide .text-box p')
+        let posX = [0, -500, -1000, -1500, -2000];
         let current = 0,
-            old = 0;
-
-        $textLi.forEach((item, idx) => {
-            $imgLi[idx].style.zIndex = '5';
-            item.addEventListener('click', (e) => {
-                current = idx;
-                banner();
-            });
-        });
-
+            totalImage = $imgLi.length,
+            old = 0,
+            old2 = 0;
+        let cnt = 0;
         function banner() {
-            $imgUl.style.left = posX[current] + 'px';
-            // $textLi[old].classList.remove('active');
-            // $textLi[current].classList.add('active');
-            $imgUl.style.transition = '0.4s';
-            $imgLi[old].classList.remove('on');
-            $imgLi[current].classList.add('on');
-            $p.textContent = textData[current];
-            old = current;
+            $imgUl.style.left = `${posX[current]}px`;
         }
 
         $prev.addEventListener('click', (e) => {
             current--;
-            if (current < 0) current = 3;
-            banner();
-            if (current === 3) {
-                $imgUl.style.transition = '0s';
+            cnt--;
+            if (cnt < 0) cnt = 3;
+            $textLi[cnt].classList.add('active');
+            $textLi[old2].classList.remove('active');
+            $p.textContent = textData[cnt];
+            if (current < 0) {
+                $imgUl.style.left = `${posX[totalImage - 1]}px`;
+                $imgUl.style.transitionDuration = '0s';
+                current = totalImage - 2;
+                setTimeout(() => {
+                    $imgUl.style.transitionDuration = '0.4s';
+                    banner();
+                }, 1);
+            } else {
+                $imgUl.style.transitionDuration = '0.4s';
+                banner();
             }
-         
+            $imgLi[current].classList.remove('on');
+            $imgLi[old].classList.add('on');
+            console.log(current);
+            old2 = cnt;
+            old = current;
         });
 
         $next.addEventListener('click', (e) => {
             current++;
-            if (current > 4) current = 0;
-            lastBanner();
-            banner();
-        });
-
-        
-        function lastBanner(x) {
-            if (current === 4) {
-                $imgUl.append($imgLi[1].cloneNode(true));
-                $imgUl.style.left = '-2000px';
-                $imgLi[0].classList.add('on');
-                setTimeout(() => {
-                    //순간이동?
-                    $imgUl.style.transition = '0s';
-                    $imgUl.style.left = 0 + 'px';
-                    $imgLi[current].classList.add('on');
-                    $p.textContent = textData[0];
-                    current = 0;
-                }, 500);
+            cnt++;
+            if (cnt > 3) cnt = 0;
+            $textLi[cnt].classList.add('active');
+            $textLi[old2].classList.remove('active');
+            $p.textContent = textData[cnt];
+            if (current >= 3) {
+                $imgLi[0].classList.remove('on');
             }
-        }
+            if (current === totalImage - 1) {
+                banner();
+                setTimeout(() => {
+                    $imgUl.style.transitionDuration = '0s';
+                    $imgUl.style.left = `${posX[0]}px`;
+                    current = 0;
+                }, 400);
+            } else {
+                $imgUl.style.transitionDuration = '0.4s';
+                banner();
+            }
+            console.log(current);
+            $imgLi[current].classList.remove('on');
+            $imgLi[old].classList.add('on');
+            old2 = cnt;
+            old = current;
+        });
     }
 }; //end interior
 

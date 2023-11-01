@@ -1,4 +1,4 @@
-
+// 전체페이지 공통
 const get  = target  => document.querySelector(target);
 const getAll  = target  => document.querySelectorAll(target);
 
@@ -80,8 +80,8 @@ const comInit = ()  => {
             family();
         });
     }
-    loadPage("page/header.html", 'header');
-    loadPage("page/footer.html", 'footer');    
+    loadPage("./page/header.html", 'header');
+    loadPage("./page/footer.html", 'footer');    
 }
 
 ;( () => {

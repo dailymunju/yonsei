@@ -15,10 +15,10 @@ const gnb = () => {
         let t = window.scrollY;
         if(t>=100) {
             header.classList.add('active');
-            logo.setAttribute('src','images/common/ft_logo.png');
+            logo.setAttribute('src','./images/common/ft_logo.png');
         }else { 
             header.classList.remove('active');
-            logo.setAttribute('src','images/common/hd_logo.png');
+            logo.setAttribute('src','./images/common/hd_logo.png');
         }
     })
 }//end gnb

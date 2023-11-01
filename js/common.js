@@ -1,4 +1,4 @@
-// 전체 페이지 공통 
+
 const get  = target  => document.querySelector(target);
 const getAll  = target  => document.querySelectorAll(target);
 

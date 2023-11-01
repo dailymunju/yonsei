@@ -50,9 +50,6 @@
 .main-tit p { letter-spacing: 8px;}
 .main-tit h3 { margin: 10px 0 40px 0; font-size: 40px; color: #26416D; letter-spacing: -1px; font-weight: 500; }
 
-/* .con-box .main-tit {opacity: 0; transform: translate(-100px , 0); transition: 0.5s;}         
-.con-box .main-tit.on { opacity: 1; transform: translate(0 , 0); } */
-
 /* 진료분야 */
 .clinic { padding-top: 100px; }
 .clinic .main-area .ma-list {display:flex; justify-content: space-between; gap:1.25rem; color:#fff;}
@@ -131,11 +128,9 @@
 .youtube .main-tab .acc dt {line-height: 40px;box-sizing: border-box;padding: 0 10px;border-bottom: 1px solid #c6c6c6;cursor: pointer;user-select: none;font-size: 20px;padding: 10px; position: relative;}
 .youtube .main-tab .acc dt i { position: absolute; top: 32px; right: 10px; }    
 .youtube .main-tab .acc dt p {display: inline-block;margin-top: 10px;margin-left: 10px; }
-.youtube .main-tab .acc dt.on { }
 .youtube .main-tab .acc dt:hover { background-color: #FFFFD0; }
 .youtube .main-tab .acc dt:hover p { text-decoration: underline;}
 .youtube .main-tab .acc dd { width: 100%;box-sizing: border-box;background: #f1f3f7;transition: .4s linear;color: #333;overflow: hidden;}
-/* .youtube .main-tab .acc dd.on { padding: 13px; } */
 .youtube .main-tab .acc dd.on { padding: 10px 15px; }
 .youtube .main-tab .acc dd img {margin-right: 20px;}
 .youtube .main-tab .acc dd p {font-size: 16px;word-break: keep-all;display: inline-block;width: 90%;}
@@ -192,7 +187,6 @@
 .main-way .tabs .item.on{background-color:#EFA603;color:#fff;}
 .main-way .tab-inner{display:none;position:relative;}
 .main-way .tab-inner.on{display: block;}
-/* .main-way .tabs-con .tab-inner:first-child{display:block} */
 .main-way .map {overflow:hidden;display:inline-block;border-radius: 20px;}
 .main-way video { width: 948px; height: 428px; object-fit: cover; border-radius: 30px;}
 .main-way .video-bg { background: url(../images/main/dot.png) repeat; position: absolute; left: 0; top: 0; width: 948px; height: 100%;}

@@ -36,6 +36,7 @@ h3 { font-size: 28px; line-height: 38px; }
 h4 { font-size: 20px; line-height: 28px; }
 
 .w100per { width: 100%; }
+.w100 { width: 100px; }
 
 .badge{width:85px; display:inline-block; background-color: #EFA603; font-size:14px; color: #fff; padding:5px;border-radius:20px; text-align:center; margin-left:10px;}
 .btn-more{display:flex; width:200px; height:55px; color:#fff; font-size:1rem; background-color:#EFA603;border-radius:30px; align-items:center; justify-content:center; border:1px solid #EFA603; }

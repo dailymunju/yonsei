@@ -13,7 +13,7 @@
 .sub-bg { width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: #000; z-index: 50; opacity: 0.6; display: none; }
 
 /* sub visual */
-#subvisual.intro-banner { background-image: url(/images/sub/sub_visual0.png); }
+#subvisual.intro-banner { background-image: url(../images/sub/sub_visual0.png); }
 #subvisual.doctor-banner {background-image: url(../images/sub/doctor-banner.png);}
 #subvisual.knee-banner { background-image: url(../images/sub/knee-banner.png); }
 #subvisual.disk-banner { background-image: url(../images/sub/disk-banner.png); }

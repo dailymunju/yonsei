@@ -126,17 +126,18 @@
 .youtube .main-tab .tab-wrap .movie-wrap .movie-list { width: 60%; }
 .youtube .main-tab .acc { width: 100%; border-top: 2px solid #333;}
 .youtube .main-tab .acc dt {line-height: 40px;box-sizing: border-box;padding: 0 10px;border-bottom: 1px solid #c6c6c6;cursor: pointer;user-select: none;font-size: 20px;padding: 10px; position: relative;}
+.youtube .main-tab .acc dt img { width: 40px; margin-top: 10px; }
 .youtube .main-tab .acc dt i { position: absolute; top: 32px; right: 10px; }    
 .youtube .main-tab .acc dt p {display: inline-block;margin-top: 10px;margin-left: 10px; }
 .youtube .main-tab .acc dt:hover { background-color: #FFFFD0; }
 .youtube .main-tab .acc dt:hover p { text-decoration: underline;}
 .youtube .main-tab .acc dd { width: 100%;box-sizing: border-box;background: #f1f3f7;transition: .4s linear;color: #333;overflow: hidden;}
-.youtube .main-tab .acc dd.on { padding: 10px 15px; }
-.youtube .main-tab .acc dd img {margin-right: 20px;}
+.youtube .main-tab .acc dd.on { padding: 10px; }
+.youtube .main-tab .acc dd img {width: 40px; margin-right: 10px; margin-top: 10px;}
 .youtube .main-tab .acc dd p {font-size: 16px;word-break: keep-all;display: inline-block;width: 90%;}
 
 /* bg배너 */
-.pr-area {background: url(../images/main/fixed_bg.png) fixed left no-repeat;width: 100%;height: 700px;}
+.pr-area {background: url(../images/main/fixed_bg.png) fixed left no-repeat;width: 100%;height: 700px;background-size: cover;}
 .pr-area .pr-txt { padding-top: 150px; }
 .pr-area h2 {color: #fff; margin-bottom: 50px; font-size: 50px; line-height: 60px; }
 .pr-area h2 p {font-size: 18px;letter-spacing: 10px;}

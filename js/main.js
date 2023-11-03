@@ -10,7 +10,7 @@ const mainVisual = () => {
         let num = txt === 'next' ? size : -size; 
         $bannerli[current].style.transition = '0s';
         $bannerli[current].style.left = `${num}%`;
-        // console.log(current);
+
         setTimeout( () => {
             $bannerli[current].style.transition = '0.4s';
             $bannerli[current].style.zIndex = '10';
@@ -37,11 +37,12 @@ const mainVisual = () => {
 
     $pagingli.forEach( (item, idx) =>{
         item.addEventListener('click', e => {
+            if(idx===current)return
             current  = idx;
-            banner('next')
+            banner('next');
         })
     })
-}//end mainVisual
+}
 
 const docBan = () => {
     let $banner = get('.doctor .banner');
@@ -83,7 +84,7 @@ const docBan = () => {
             timer = setInterval(make, interval);
         }
     }
-}// end docBan
+}
 
 const partner = () => {
     let $partner = get('.partner');
@@ -101,7 +102,7 @@ const partner = () => {
     clone.classList.add('clone');
 
     
-}// end docBan
+}
 
 const tab = () => {
     let $li = getAll('.youtube .main-tab .tabmenu li');
@@ -111,16 +112,12 @@ const tab = () => {
     let arr =[]; 
     $li.forEach((item,idx) => {
         item.addEventListener('click', e => {
+            if(old === idx) return;
             id = idx; 
             $li[id].classList.add('on');
             $li[old].classList.remove('on');
-
             $tabcon[id].classList.add('on');
             $tabcon[old].classList.remove('on');
-
-            //h = getComputedStyle($tabcon[id]).height;
-            //h = parseInt(h) + 300;
-            //$con.style.height = h + 'px';
             old = id;
 
             if(id == 1){              
@@ -129,14 +126,12 @@ const tab = () => {
                     let dtI = getAll('.youtube .tab-wrap .qna .acc dt i');
                     let dd = getAll('.youtube .tab-wrap .qna .acc dd');
                     dt.forEach((item,idx) => {
-
                         arr.push(dd[idx].offsetHeight + 30);
-                        console.log(arr);
 
-                        dd[idx].style.height = '0px'; //초기화
-                        dt[idx].classList.remove('on'); //초기화
+                        dd[idx].style.height = '0px'; 
+                        dt[idx].classList.remove('on'); 
                         dd[idx].classList.remove('on');
-                        dtI[idx].classList.replace('xi-minus','xi-plus'); //초기화
+                        dtI[idx].classList.replace('xi-minus','xi-plus');
 
                         dd[0].style.height = arr[0] + 'px';
                         dt[0].classList.add('on');
@@ -163,32 +158,6 @@ const tab = () => {
         
     })
 }
-
-/* const txtEffect = () =>{  
-    let li =getAll('.gnb li');
-    let con = getAll('.con-box');       
-    let ttop = get('.top');
-    const boxes = getAll('.con-box');
-    const mainTit = getAll('.main-tit');
-    const quick = get('.quick');
-    let ty = 0;
-
-    window.addEventListener('scroll', e => {
-        let t = window.scrollY;
-        
-        const triggerBottom = window.innerHeight / 5 * 3
-        boxes.forEach((box, idx )=> {
-            const boxTop = box.getBoundingClientRect().top
-            if (boxTop < triggerBottom) {
-                mainTit[idx].classList.add('on')
-            }
-            else {
-                mainTit[idx].classList.remove('on')
-            }
-        })//end boxes
-    })
-}
- */
 
 const autoVideo = () => {
     let data = [
@@ -232,7 +201,6 @@ const popup = () => {
     const $popup = get('.popup');
     const $close = get('.popup .close');
 
-    // 설문리스트
     let $question = [
         'Q. 팔을 움직일 때 특정 각도에서 통증이 있다',
         'Q. 팔을 많이 쓰고 난 뒤에 어깨 통증이 심하다.',
@@ -247,8 +215,8 @@ const popup = () => {
         '자가진단이 완료되었습니다.',
     ];
 
-    let arr = []; // 응답값 배열
-    let cnt = 0; // 현재 위치
+    let arr = []; 
+    let cnt = 0; 
 
     let answer = document.getElementsByName('check');
     let $questionText = get('.popup .survey-list p.questionText');
@@ -283,7 +251,6 @@ const popup = () => {
     $btn2.style.display = "none";
     $resultBox.style.display = "none";
 
-    // 재시작버튼 눌렀을 때
     $restart.addEventListener('click', (e) => {
         arr = [];
         cnt = 0;
@@ -311,16 +278,13 @@ const popup = () => {
         progressValue.textContent = `${progressStartValue}%`;
         circularProgress.style.background = `conic-gradient(#EFA603 ${progressStartValue * 3.6}deg, #ededed 0deg)`;
 
-        //다음단계 넘어갔을때 체크 풀고 초기화
         answer[0].checked = false;
         answer[1].checked = false;
     }
 
-    // cnt가 9일때 그다음버튼을 누르면, 
     $next.addEventListener('click', (e) => {
         if (cnt === $question.length - 2) {
             let count = arr.filter(item => 'yes' === item).length;
-            //1개이상 3개 이하일떄는 운동, 4개이상 6개미만일떄는 주의, 7개 이상일때는 심각
             if(count <= 3){
                 $questionText.textContent = '';
                 $resultText.textContent = '꾸준한 운동과 관리로도 어깨건강을 바로잡으실 수 있습니다.';
@@ -361,6 +325,7 @@ const popup = () => {
         arr.pop();
     });
 }
+
 const topBtn = () =>{
     let li =getAll('.gnb li');   
     let ttop = get('.top');
@@ -374,8 +339,6 @@ const topBtn = () =>{
         }else {
             ttop.classList.remove('on');
         }
-        
-        // 퀵배너
         quick.style.top = (t + 300) + 'px';
     })
 
@@ -383,16 +346,16 @@ const topBtn = () =>{
         ty = 0           
         window.scrollTo({top:ty, behavior:'smooth'});
     })
-}//end topBtn
+}
 
 (()=>{
-    mainVisual(); //비주얼배너
-    docBan(); // 의료진배너
-    partner(); //협력사롤링
-    tab();//탭, 아코디언
-    autoVideo(); //유튜브
-    wayTab(); //오시는길탭
-    popup(); //자가진단팝업
+    mainVisual();
+    docBan(); 
+    partner();
+    tab();
+    autoVideo();
+    wayTab(); 
+    popup(); 
     topBtn();
 })();
 

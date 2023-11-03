@@ -51,7 +51,7 @@ const doctor = () => {
             });
         });
     }
-}; //end doctor
+}; 
 
 const interior = () => {
     const interior = get('.interior');
@@ -69,11 +69,7 @@ const interior = () => {
         const $prev = get('.interior .slide .img-box .btn.prev');
         const $p = get('.interior .slide .text-box p')
         let posX = [0, -500, -1000, -1500, -2000];
-        let current = 0,
-            totalImage = $imgLi.length,
-            old = 0,
-            old2 = 0;
-        let cnt = 0;
+        let current = 0, totalImage = $imgLi.length, old = 0, old2 = 0, cnt = 0;
         function banner() {
             $imgUl.style.left = `${posX[current]}px`;
         }
@@ -99,7 +95,6 @@ const interior = () => {
             }
             $imgLi[current].classList.remove('on');
             $imgLi[old].classList.add('on');
-            console.log(current);
             old2 = cnt;
             old = current;
         });
@@ -125,18 +120,16 @@ const interior = () => {
                 $imgUl.style.transitionDuration = '0.4s';
                 banner();
             }
-            console.log(current);
             $imgLi[current].classList.remove('on');
             $imgLi[old].classList.add('on');
             old2 = cnt;
             old = current;
         });
     }
-}; //end interior
+}; 
 
 const device = () => {
     const device = get('.device');
-
     if (device) {
         const deviceDeta = [
             {
@@ -183,7 +176,6 @@ const device = () => {
         ];
         let $deviceUl = get('.device .gallery ul');
         let output = '';
-        console.log($deviceUl);
         for (let i = 0; i < 10; i++) {
             output += `<li>
             <img src="images/sub/device${i}.jpg" alt="장비" />

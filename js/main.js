@@ -100,8 +100,6 @@ const partner = () => {
 
     $roller.classList.add('original');
     clone.classList.add('clone');
-
-    
 }
 
 const tab = () => {
@@ -110,6 +108,7 @@ const tab = () => {
     let $con = get('.youtube');
     let id = 0, h = 0, old = 0; 
     let arr =[]; 
+    
     $li.forEach((item,idx) => {
         item.addEventListener('click', e => {
             if(old === idx) return;
@@ -126,11 +125,11 @@ const tab = () => {
                     let dtI = getAll('.youtube .tab-wrap .qna .acc dt i');
                     let dd = getAll('.youtube .tab-wrap .qna .acc dd');
                     dt.forEach((item,idx) => {
-                        arr.push(dd[idx].offsetHeight + 30);
-
+                        let h = dd[idx].offsetHeight + 20;
+                        arr.push(h);
                         dd[idx].style.height = '0px'; 
                         dt[idx].classList.remove('on'); 
-                        dd[idx].classList.remove('on');
+                        dd[idx].classList.remove('on'); 
                         dtI[idx].classList.replace('xi-minus','xi-plus');
 
                         dd[0].style.height = arr[0] + 'px';
@@ -139,16 +138,18 @@ const tab = () => {
                         dtI[0].classList.replace('xi-plus','xi-minus');
                         
                         item.addEventListener('click', e => {
-                            dd.forEach((ddItem,index) => {
-                                dd[index].style.height = '0px';
-                                dt[index].classList.remove('on');
-                                dd[index].classList.remove('on');
-                                dtI[index].classList.replace('xi-minus','xi-plus');
-                            })
-                            dd[idx].style.height=arr[idx] + 'px';
-                            dt[idx].classList.add('on');
-                            dd[idx].classList.add('on');
-                            dtI[idx].classList.replace('xi-plus','xi-minus');
+                            let isOn = item.classList.contains('on');
+                            if(isOn) {
+                                dd[idx].style.height = '0px'; 
+                                dt[idx].classList.remove('on'); 
+                                dd[idx].classList.remove('on');
+                                dtI[idx].classList.replace('xi-minus','xi-plus');
+                            }else {
+                                dd[idx].style.height = arr[idx] + 'px';
+                                dt[idx].classList.add('on');
+                                dd[idx].classList.add('on');
+                                dtI[idx].classList.replace('xi-plus','xi-minus');
+                            }
                         })
                     })
                 }

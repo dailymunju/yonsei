@@ -69,17 +69,20 @@ const interior = () => {
         const $prev = get('.interior .slide .img-box .btn.prev');
         const $p = get('.interior .slide .text-box p')
         let posX = [0, -500, -1000, -1500, -2000];
-        let current = 0, totalImage = $imgLi.length, old = 0, old2 = 0, cnt = 0;
+        let current = 0,
+            totalImage = $imgLi.length,
+            old = 0,
+            textOld = 0;
+        let cnt = 0;
         function banner() {
             $imgUl.style.left = `${posX[current]}px`;
         }
-
         $prev.addEventListener('click', (e) => {
             current--;
             cnt--;
             if (cnt < 0) cnt = 3;
             $textLi[cnt].classList.add('active');
-            $textLi[old2].classList.remove('active');
+            $textLi[textOld].classList.remove('active');
             $p.textContent = textData[cnt];
             if (current < 0) {
                 $imgUl.style.left = `${posX[totalImage - 1]}px`;
@@ -95,16 +98,15 @@ const interior = () => {
             }
             $imgLi[current].classList.remove('on');
             $imgLi[old].classList.add('on');
-            old2 = cnt;
+            textOld = cnt;
             old = current;
         });
-
         $next.addEventListener('click', (e) => {
             current++;
             cnt++;
-            if (cnt > 3) cnt = 0;
+            if (cnt > $textLi.length - 1) cnt = 0;
             $textLi[cnt].classList.add('active');
-            $textLi[old2].classList.remove('active');
+            $textLi[textOld].classList.remove('active');
             $p.textContent = textData[cnt];
             if (current >= 3) {
                 $imgLi[0].classList.remove('on');
@@ -122,11 +124,11 @@ const interior = () => {
             }
             $imgLi[current].classList.remove('on');
             $imgLi[old].classList.add('on');
-            old2 = cnt;
+            textOld = cnt;
             old = current;
         });
     }
-}; 
+};
 
 const device = () => {
     const device = get('.device');

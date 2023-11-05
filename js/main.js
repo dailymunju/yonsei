@@ -7,7 +7,7 @@ const mainVisual = () => {
 
     timer = setInterval(make, interval);
     function banner( txt ){
-        let num = txt === 'next' ? size : -size; 
+        if(txt === 'next') { num = size}
         $bannerli[current].style.transition = '0s';
         $bannerli[current].style.left = `${num}%`;
 
@@ -106,20 +106,18 @@ const tab = () => {
     let $li = getAll('.youtube .main-tab .tabmenu li');
     let $tabcon = getAll('.youtube .main-tab .tab-wrap .tab-con');
     let $con = get('.youtube');
-    let id = 0, h = 0, old = 0; 
-    let arr =[]; 
-    
+    let id = 0, h = 0, old = 0;
+    let arr =[];
     $li.forEach((item,idx) => {
         item.addEventListener('click', e => {
             if(old === idx) return;
-            id = idx; 
+            id = idx;
             $li[id].classList.add('on');
             $li[old].classList.remove('on');
             $tabcon[id].classList.add('on');
             $tabcon[old].classList.remove('on');
             old = id;
-
-            if(id == 1){              
+            if(id == 1){
                 const acc = () => {
                     let dt = getAll('.youtube .tab-wrap .qna .acc dt');
                     let dtI = getAll('.youtube .tab-wrap .qna .acc dt i');
@@ -127,28 +125,28 @@ const tab = () => {
                     dt.forEach((item,idx) => {
                         let h = dd[idx].offsetHeight + 20;
                         arr.push(h);
-                        dd[idx].style.height = '0px'; 
-                        dt[idx].classList.remove('on'); 
-                        dd[idx].classList.remove('on'); 
-                        dtI[idx].classList.replace('xi-minus','xi-plus');
-
+                        function add(idx) {
+                            dt[idx].classList.add('on');
+                            dd[idx].classList.add('on');
+                            dtI[idx].classList.replace('xi-plus','xi-minus');
+                        }
+                        function remove(idx){
+                            dt[idx].classList.remove('on');
+                            dd[idx].classList.remove('on');
+                            dtI[idx].classList.replace('xi-minus','xi-plus');
+                        }
+                        dd[idx].style.height = '0px';
+                        remove(idx)
                         dd[0].style.height = arr[0] + 'px';
-                        dt[0].classList.add('on');
-                        dd[0].classList.add('on');
-                        dtI[0].classList.replace('xi-plus','xi-minus');
-                        
+                        add(0)
                         item.addEventListener('click', e => {
                             let isOn = item.classList.contains('on');
                             if(isOn) {
-                                dd[idx].style.height = '0px'; 
-                                dt[idx].classList.remove('on'); 
-                                dd[idx].classList.remove('on');
-                                dtI[idx].classList.replace('xi-minus','xi-plus');
+                                dd[idx].style.height = '0px';
+                                remove(idx)
                             }else {
                                 dd[idx].style.height = arr[idx] + 'px';
-                                dt[idx].classList.add('on');
-                                dd[idx].classList.add('on');
-                                dtI[idx].classList.replace('xi-plus','xi-minus');
+                                add(idx)
                             }
                         })
                     })
@@ -156,7 +154,6 @@ const tab = () => {
                 acc();
             }
         })
-        
     })
 }
 
